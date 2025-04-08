@@ -5,10 +5,9 @@ import pandas as pd
 def proyectarPts(T, wz):
     assert(T.shape == (2,2)) # chequeo de matriz 2x2
     assert(T.shape[1] == wz.shape[0]) # multiplicacion matricial valida   
-    xy = None
-    ############### Insert code here!! ######################3    
 
-    ############### Insert code here!! ######################3
+    xy = T @ wz
+    
     return xy
 
 def pointsGrid(corners):
@@ -56,10 +55,11 @@ def main():
     print('Ejecutar el programa')
     # generar el tipo de transformacion dando valores a la matriz T
     T = pd.read_csv('T.csv', header=None).values
-    corners = np.array([[0,0],[100,100]])
-    # corners = np.array([[-100,-100],[100,100]]) array con valores positivos y negativos
+    # corners = np.array([[0,0],[100,100]])
+    corners = np.array([[-100,-100],[100,100]]) # array con valores positivos y negativos
     wz = pointsGrid(corners)
     vistform(T, wz, 'Deformar coordenadas')
+    plt.savefig('transformation_plot.png')  # Save the figure to a file instead
     
     
 if __name__ == "__main__":
